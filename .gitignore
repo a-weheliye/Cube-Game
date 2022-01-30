@@ -21,6 +21,7 @@ Library/
 Temp/
 
 ############### UNITY ##################
+/Blink/
 /[Ll]ibrary/
 /[Tt]emp/
 /[Oo]bj/
