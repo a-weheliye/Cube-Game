@@ -6,11 +6,11 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour {
     public bool gameEnded = false;
     public bool noLives = false;
-    public float restartDelay = 1f;
+    public float restartDelay = 2f;
 
     public GameObject completeLevelUI;
-    // public Transform player;
-    // private static int _numLives = 3;
+    
+    public AudioSource fallSound;
 
     public void CompletedLevel() {
         print("Level WON");
@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour {
     
     public void EndGame() {
         if (!gameEnded) {
+            fallSound.Play();
             gameEnded = true;
             ScoreScript.NumLives -= 1;
             // print("Game Over!");
@@ -27,7 +28,7 @@ public class GameManager : MonoBehaviour {
                 Invoke("Restart", restartDelay);
             }
             else {
-                Invoke("GameOver", 2);
+                Invoke("GameOver", 3);
             }
         }
     }

@@ -18,7 +18,10 @@ public class PlayerMovement : MonoBehaviour {
 
     private float max_z;
     public Transform parent;
- 
+    
+    public AudioSource jumpSound;
+
+    
 
     
     // Start is called before the first frame update
@@ -31,18 +34,21 @@ public class PlayerMovement : MonoBehaviour {
     void Update() {
         
         if (Input.GetKey("w") && (playerOnGround || playerOnPlatform)) {
+            jumpSound.Play();
             rb.AddForce(0, 5.5f,5, ForceMode.VelocityChange);
             playerOnGround = false;
             playerOnPlatform = false;
         }
         
         if (Input.GetKey("s") && (playerOnGround || playerOnPlatform)) {
+            jumpSound.Play();
             rb.AddForce(0, 5.5f,-5, ForceMode.VelocityChange);
             playerOnGround = false;
             playerOnPlatform = false;
         }
         
         if (Input.GetKey("a") && (playerOnGround || playerOnPlatform)) {
+            jumpSound.Play();
             rb.AddForce(-5, 5.5f,0, ForceMode.VelocityChange);
             playerOnGround = false;
             playerOnPlatform = false;
@@ -50,6 +56,7 @@ public class PlayerMovement : MonoBehaviour {
         
         
         if (Input.GetKey("d") && (playerOnGround || playerOnPlatform)) {
+            jumpSound.Play();
             rb.AddForce(5, 5.5f,0, ForceMode.VelocityChange);
             playerOnGround = false;
             playerOnPlatform = false;
@@ -57,6 +64,7 @@ public class PlayerMovement : MonoBehaviour {
 
 
         if (Input.GetKeyDown("space") && (playerOnGround || playerOnPlatform)) {
+            jumpSound.Play();
             rb.AddForce(0, 5.5f,5, ForceMode.VelocityChange);
             playerOnGround = false;
             playerOnPlatform = false;
@@ -108,6 +116,7 @@ public class PlayerMovement : MonoBehaviour {
 
     void CheckIfGameOver() {
         if (rb.position.y < 0 || hitByWeapon) {
+            
             FindObjectOfType<GameManager>().EndGame();
         }
         
